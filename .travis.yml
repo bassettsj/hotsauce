@@ -4,7 +4,7 @@ php:
   - 5.3
 
 mysql:
-  database: travis_ci_drupal_module_example_test
+  database: hotsause
   username: root
   encoding: utf8
 
@@ -19,6 +19,11 @@ before_script:
   - sed -i '1i export PATH="$HOME/.composer/vendor/bin:$PATH"' $HOME/.bashrc
   - composer global require drush/drush:dev-master
   - which drush
+  - sudo chmod +x build.sh
+  - sh ./build.sh testbuild
+  - 1
+  - cd testbuild
+  - drush si --db-url=mysql://root:root@localhost/hotsauce -y
 
 script:
-  - echo 'success!'
+  - drush test-run --all
