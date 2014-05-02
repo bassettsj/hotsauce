@@ -13,6 +13,7 @@ before_install:
   - sudo apt-get install git
 
 before_script:
+  - which php
   - curl -sS https://getcomposer.org/installer | php
   - sudo mv composer.phar /usr/local/bin/composer
   - which composer
