@@ -1,0 +1,24 @@
+anguage: php
+
+php:
+  - 5.3
+
+mysql:
+  database: travis_ci_drupal_module_example_test
+  username: root
+  encoding: utf8
+
+before_install:
+  - sudo apt-get update > /dev/null
+  - sudo apt-get install git
+
+before_script:
+  - curl -sS https://getcomposer.org/installer | php
+  - sudo mv composer.phar /usr/local/bin/composer
+  - which composer
+  - sed -i '1i export PATH="$HOME/.composer/vendor/bin:$PATH"' $HOME/.bashrc
+  - composer global require drush/drush:dev-master
+  - which drush
+
+script:
+  - echo 'success!'
